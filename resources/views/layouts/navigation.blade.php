@@ -6,16 +6,28 @@
                     AskLocal
                 </span>
                 <div class="hidden md:flex items-center gap-6">
-                    <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Explorer</a>
-                    <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Tendances</a>
+                    <a href="{{ route('home') }}" class="text-gray-600 hover:text-purple-600 transition-colors">Explorer</a>
+                    <a href="{{ route('questions.index') }}" class="text-gray-600 hover:text-purple-600 transition-colors">Tendances</a>
                     <a href="#" class="text-gray-600 hover:text-purple-600 transition-colors">Communauté</a>
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <button class="text-purple-600 hover:text-purple-700">Connexion</button>
-                <button class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-xl hover:opacity-90 transition-opacity">
-                    Rejoindre
-                </button>
+                @auth
+                    <span class="text-gray-700">{{ Auth::user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                                class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-xl hover:opacity-90 transition-opacity">
+                            Déconnexion
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="text-purple-600 hover:text-purple-700">Connexion</a>
+                    <a href="{{ route('register') }}"
+                       class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-xl hover:opacity-90 transition-opacity">
+                        Rejoindre
+                    </a>
+                @endauth
             </div>
         </div>
     </div>

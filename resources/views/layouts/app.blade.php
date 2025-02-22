@@ -14,11 +14,11 @@
                 .toString()
                 .match(/toggle-comments-(\d+)/)[1];
                 const commentsSection = document.querySelector(`.comments-section-${questionId}`);
-                
+
                 if (commentsSection) {
                 // Toggle the hidden class for the comments section
                 commentsSection.classList.toggle('hidden');
-                
+
                 // Update button text based on visibility
                 const isHidden = commentsSection.classList.contains('hidden');
                 this.textContent = isHidden ? 'Voir les commentaires' : 'Masquer les commentaires';
@@ -30,7 +30,7 @@
 </head>
 <body class="h-full bg-gradient-to-br from-purple-50 to-pink-50 font-[Inter]">
     @include('layouts.navigation')
-    
+
     @yield('content')
 
     @include('components.floating-button')

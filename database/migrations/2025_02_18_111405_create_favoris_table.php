@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('favoris', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('questions_id')->nullable();
+            $table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade');
             $table->timestamps();
         });
     }
