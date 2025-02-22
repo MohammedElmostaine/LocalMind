@@ -18,6 +18,10 @@ class QuestionsController extends Controller
     // return $questions;
     return view('home', compact('questions'));
 }
+public function create()
+{
+    return view('sections.addquestion');
+}
 
 // In app/Models/Questions.php
 
