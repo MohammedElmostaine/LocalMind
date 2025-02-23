@@ -53,5 +53,22 @@ class QuestionController extends Controller
 
         return view('home', compact('questions'));
     }
+
+    public function like(Question $question)
+    {
+        $user = Auth::user();
+        
+        if (!$user) {
+            return redirect()->route('login');
+        }
+        
+        if ($question->isLikedBy($user)) {
+            $question->likes()->detach($user->id);
+            return redirect()->back()->with('success', 'Question unliked successfully.');
+        }
+
+        $question->likes()->attach($user->id);
+        return redirect()->back()->with('success', 'Question liked successfully.');
+    }
 }
 ?>

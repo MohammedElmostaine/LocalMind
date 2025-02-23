@@ -32,10 +32,26 @@
                             </x-floating-button>
                         </div>
                         <div>
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
+                            @auth
+                                <form action="{{ route('questions.like', $question) }}" method="POST" class="inline">
+                                    @csrf
+                                    <button type="submit" 
+                                        class="flex items-center gap-2 {{ $question->isLikedBy(Auth::user()) ? 'text-pink-600' : 'text-gray-400' }} hover:text-pink-600 transition-colors">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"/>
+                                        </svg>
+                                        <span>{{ $question->likes()->count() }}</span>
+                                    </button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" 
+                                    class="flex items-center gap-2 text-gray-400 hover:text-pink-600 transition-colors">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"/>
+                                    </svg>
+                                    <span>{{ $question->likes()->count() }}</span>
+                                </a>
+                            @endauth
                         </div>
                     </div>
                 </div>

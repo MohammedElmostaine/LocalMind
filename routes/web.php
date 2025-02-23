@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
     Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
     Route::get('/questions/my', [QuestionController::class, 'userQuestions'])->name('questions.my');
+    Route::post('/questions/{question}/like', [QuestionController::class, 'like'])->name('questions.like');
 });
 // Protected Comment Routes
 Route::middleware('auth')->group(function () {
