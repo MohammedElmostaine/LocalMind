@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use App\Models\Categories;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Comments;
 use App\Models\User;
 
-
-
 class Questions extends Model
 {
-    protected $guarded = [];
+    use HasFactory;
 
+    protected $guarded = [];
 
     public function category()
     {

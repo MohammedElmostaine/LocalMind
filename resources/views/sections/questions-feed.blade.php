@@ -55,7 +55,7 @@
                                         <span class="text-sm text-gray-500">• {{ $comment->created_at->diffForHumans() }}</span>
                                     </div>
                                     <p class="text-gray-600">
-                                        {{ $comment->content }}
+                                        {{ $comment->body  }}
                                     </p>
                                 </div>
                             </div>

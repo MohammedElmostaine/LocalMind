@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 
 class QuestionSeeder extends Seeder
 {
+
+        
     /**
      * Run the database seeds.
      */
