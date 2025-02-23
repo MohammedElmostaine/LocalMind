@@ -7,23 +7,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('[class*="toggle-comments-"]').forEach(button => {
-            button.addEventListener('click', function () {
-                const questionId = this.classList
-                .toString()
-                .match(/toggle-comments-(\d+)/)[1];
-                const commentsSection = document.querySelector(`.comments-section-${questionId}`);
-
-                if (commentsSection) {
-                // Toggle the hidden class for the comments section
-                commentsSection.classList.toggle('hidden');
-
-                // Update button text based on visibility
-                const isHidden = commentsSection.classList.contains('hidden');
-                this.textContent = isHidden ? 'Voir les commentaires' : 'Masquer les commentaires';
-                }
-            });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.toggle-comments').forEach(button => {
+                button.addEventListener('click', function () {
+                    // Find the closest question card parent
+                    const questionCard = this.closest('.questions-card');
+                    if (questionCard) {
+                        // Find the comments section within this card
+                        const commentsSection = questionCard.querySelector('[class^="comments-section-"]');
+                        if (commentsSection) {
+                            commentsSection.classList.toggle('hidden');
+                            const isHidden = commentsSection.classList.contains('hidden');
+                            const span = this.querySelector('span');
+                            if (span) {
+                                span.textContent = isHidden ? 'Rponses' : 'Masquer';
+                            }
+                        }
+                    }
+                });
             });
         });
     </script>
@@ -33,6 +34,5 @@
 
     @yield('content')
 
-    @include('components.floating-button')
 </body>
 </html>

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Questions;
+use App\Models\Question;
 
-class Categories extends Model
+class Categorie extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,6 @@ class Categories extends Model
 
     public function questions()
     {
-        return $this->hasMany(Questions::class);
+        return $this->hasMany(Question::class);
     }
 }

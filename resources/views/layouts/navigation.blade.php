@@ -1,5 +1,5 @@
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-11/12 max-w-7xl bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg z-50">
-    <div class="px-4 sm:px-6 py-4">
+<nav class="w-full bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-4 sm:gap-8">
                 <span class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">

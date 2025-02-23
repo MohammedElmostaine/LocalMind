@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,19 @@ Route::middleware('auth')->group(function () {
 });
 
 // Public Routes
-Route::get('/', [QuestionsController::class, 'index'])->name('home');
-Route::get('/questions', [QuestionsController::class, 'index'])->name('questions.index');
+Route::get('/', [QuestionController::class, 'index'])->name('home');
+Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
+
+// Search Route
+Route::get('/search', [QuestionController::class, 'search'])->name('questions.search');
 
 // Protected Question Routes
 Route::middleware('auth')->group(function () {
-    Route::get('/questions/create', [QuestionsController::class, 'create'])->name('questions.create');
-    Route::post('/questions', [QuestionsController::class, 'store'])->name('questions.store');
-    Route::get('/questions/my', [QuestionsController::class, 'userQuestions'])->name('questions.my');
+    Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
+    Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
+    Route::get('/questions/my', [QuestionController::class, 'userQuestions'])->name('questions.my');
+});
+// Protected Comment Routes
+Route::middleware('auth')->group(function () {
+    Route::post('/questions/{question}/comments', [CommentController::class, 'store'])->name('comments.store');
 });

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Models\Questions;
+use App\Models\Question;
 
 class Favoris extends Model
 {
@@ -16,6 +16,6 @@ class Favoris extends Model
     }
     public function question()
     {
-        return $this->belongsTo(Questions::class);
+        return $this->belongsTo(Question::class);
     }
 }

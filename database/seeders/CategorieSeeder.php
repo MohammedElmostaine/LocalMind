@@ -1,25 +1,17 @@
 <?php
 
-
 namespace Database\Seeders;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Categories;
+use Illuminate\Database\Seeder;
+use App\Models\Categorie;
 
-
-class CategorieFactory extends Factory
+class CategorieSeeder extends Seeder
 {
-    protected $model = Categories::class;
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * Run the database seeds.
      */
-    public function definition(): array
+    public function run(): void
     {
-        return [
-            'name' => fake()->word(),
-            // Add other fields as needed
-        ];
+        Categorie::factory(10)->create();
     }
 }

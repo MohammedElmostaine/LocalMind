@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Comment;
+use App\Models\Question;
+use App\Models\User;
 
 class CommentSeeder extends Seeder
 {
@@ -12,6 +14,17 @@ class CommentSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Assuming you have some questions and users already seeded
+        $questions = Question::all();
+        $users = User::all();
+
+        foreach ($questions as $question) {
+            foreach ($users as $user) {
+                Comment::factory()->create([
+                    'question_id' => $question->id,
+                    'user_id' => $user->id,
+                ]);
+            }
+        }
     }
 }

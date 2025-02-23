@@ -43,26 +43,29 @@
             <div class="comments-section-{{ $question->id }} hidden mt-4">
                 <div class="bg-gray-50 p-4 rounded-xl shadow-inner">
                     <h4 class="text-lg font-semibold mb-2">Commentaires</h4>
-                    <div class="space-y-4">
-                        @foreach($question->comments as $comment)
-                            <div class="flex items-start gap-4">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">
-                                    {{ substr($comment->user->name, 0, 2) }}
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <span class="font-medium text-gray-900">{{ $comment->user->name }}</span>
-                                        <span class="text-sm text-gray-500">• {{ $comment->created_at->diffForHumans() }}</span>
-                                    </div>
-                                    <p class="text-gray-600">
-                                        {{ $comment->body  }}
-                                    </p>
-                                </div>
+                    @foreach($question->comments as $comment)
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold">
+                                {{ substr($comment->user->name, 0, 2) }}
                             </div>
-                        @endforeach
-                    </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="font-medium text-gray-900">{{ $comment->user->name }}</span>
+                                    <span class="text-sm text-gray-500">• {{ $comment->created_at->diffForHumans() }}</span>
+                                </div>
+                                <p class="text-gray-600">
+                                    {{ $comment->body }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
                     <div class="mt-4">
-                        <input type="text" placeholder="Ajouter un commentaire..." class="w-full px-4 py-2 bg-gray-100 rounded-xl border-0 focus:ring-2 focus:ring-purple-600">
+                        <form action="{{ route('comments.store', $question->id) }}" method="POST">
+                            @csrf
+                            <input type="text" name="body" placeholder="Ajouter un commentaire..." class="w-full px-4 py-2 bg-gray-100 rounded-xl border-0 focus:ring-2 focus:ring-purple-600">
+
+                            <button type="submit" class="mt-2 px-4 py-2 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-colors">Ajouter</button>
+                        </form>
                     </div>
                 </div>
             </div>

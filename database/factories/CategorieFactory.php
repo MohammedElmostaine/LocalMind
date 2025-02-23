@@ -2,16 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Categories;
+use App\Models\Categorie;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Categories>
- */
 class CategorieFactory extends Factory
 {
-    protected $model = Categories::class;
+    protected $model = Categorie::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +18,7 @@ class CategorieFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
+            // Add other fields as needed
         ];
     }
-
 }
